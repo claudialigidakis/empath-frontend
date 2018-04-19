@@ -1,0 +1,29 @@
+h1, h2, h3, h4, h5, h6 {
+  font-family: Catamaran;
+  font-weight: 800 !important
+}
+
+.bg-black {
+  background-color: #000 !important
+}
+
+.navbar-custom {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: rgba(0, 0, 0, .7)
+}
+
+.navbar-custom .navbar-brand {
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: .1rem;
+  font-weight: 700
+}
+
+section {
+  position: relative;
+  overflow: hidden;
+  padding-top: calc(7rem + 72px);
+  padding-bottom: 7rem;
+  background: white;
+}
