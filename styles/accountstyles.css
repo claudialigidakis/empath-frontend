@@ -1,6 +1,6 @@
-h1, h2, h3, h4, h5, h6 {
-  font-family: Catamaran;
-  font-weight: 800 !important
+body {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .bg-black {
@@ -23,7 +23,7 @@ h1, h2, h3, h4, h5, h6 {
 section {
   position: relative;
   overflow: hidden;
-  padding-top: calc(7rem + 72px);
-  padding-bottom: 7rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   background: white;
 }
