@@ -29,14 +29,13 @@
     if(fname && lname && email && newUser && newPass) {
       request('/users', 'post', { username : newUser, password : newPass, fname , lname, email })
       .then(function(response){
-        console.log(response)
-        // request('/auth/token', 'post', { username , password })
-        // .then(function(response){
-        //   console.log("response")
-        //   document.querySelector('#registerError').classList.add('hide-auth-error')
-        //   localStorage.setItem('token', response.data.token)
-        //   window.location = '/myDashboard.html'
-        // })
+        return request('/auth/token', 'post', { username : newUser, password : newPass })
+      })
+      .then(function(response){
+        console.log("response")
+        document.querySelector('#registerError').classList.add('hide-auth-error')
+        localStorage.setItem('token', response.data.token)
+        window.location = '/myDashboard.html'
       })
       .catch(function(error){
         document.querySelector('#registerError').classList.remove('hide-auth-error')
