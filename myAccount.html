@@ -8,7 +8,9 @@
   <title>Account Dashboard</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
   <link rel="stylesheet" href="styles/accountstyles.css">
-  <script defer src="scripts/home.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script defer src="scripts/helper.js"></script>
+  <script defer src="scripts/account.js"></script>
 </head>
 
 <body>
@@ -26,25 +28,67 @@
             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           My Account
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="myDashboard.html">My Dashboard</a>
-          <a class="dropdown-item" href="browseCampaigns.html">Browse Campaigns</a>
-          <a class="dropdown-item" href="myAccount.html">My Account</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="index.html">Sign Out</a>
-        </div>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="myDashboard.html">My Dashboard</a>
+              <a class="dropdown-item" href="browseCampaigns.html">Browse Campaigns</a>
+              <a class="dropdown-item" href="myAccount.html">My Account</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="index.html">Sign Out</a>
+            </div>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <section>
-    <div class="content">
-      <span>My Account Settings</span>
-    </div>
-  </section>
+  <div id="wrapper">
 
+          <!-- Sidebar -->
+          <div id="sidebar-wrapper">
+              <ul class="sidebar-nav">
+                  <li class="sidebar-brand">
+                      <a href="#">
+                          Start Bootstrap
+                      </a>
+                  </li>
+                  <li>
+                      <a href="#">Dashboard</a>
+                  </li>
+                  <li>
+                      <a href="#">Shortcuts</a>
+                  </li>
+                  <li>
+                      <a href="#">Overview</a>
+                  </li>
+                  <li>
+                      <a href="#">Events</a>
+                  </li>
+                  <li>
+                      <a href="#">About</a>
+                  </li>
+                  <li>
+                      <a href="#">Services</a>
+                  </li>
+                  <li>
+                      <a href="#">Contact</a>
+                  </li>
+              </ul>
+          </div>
+          <!-- /#sidebar-wrapper -->
+
+          <!-- Page Content -->
+          <div id="page-content-wrapper">
+              <div class="container-fluid">
+                  <h1>Simple Sidebar</h1>
+                  <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
+                  <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+                  <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
+              </div>
+          </div>
+          <!-- /#page-content-wrapper -->
+
+      </div>
+      <!-- /#wrapper -->
 
   <!-- Footer -->
   <footer class="py-5 bg-black">

@@ -8,7 +8,9 @@
   <title>Account Dashboard</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
   <link rel="stylesheet" href="styles/accountstyles.css">
-  <script defer src="scripts/home.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script defer src="scripts/helper.js"></script>
+  <script defer src="scripts/account.js"></script>
 </head>
 
 <body>
@@ -38,8 +40,6 @@
       </div>
     </div>
   </nav>
-  <!-- modal -->
-  <div class="center"><button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block">Click Me</button></div>
   <!-- line modal -->
   <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
@@ -81,40 +81,57 @@
     </div>
   </div>
 
-  <section id="favoriteCampaigns">
-    <h4>Favorite Campaigns</h4>
-    <div class="card-deck">
-      <div class="card col-md-2">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="card-link">Card link</a>
+  <div class="container">
+    <div class="row row-offcanvas row-offcanvas-right">
+      <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
+        <div class="list-group">
+          <!-- modal -->
+          <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block">Create a Campaign</button>
+          <a href="#" class="list-group-item">Link</a>
+          <a href="#" class="list-group-item">Link</a>
+          <a href="#" class="list-group-item">Link</a>
+          <a href="#" class="list-group-item">Link</a>
+          <a href="#" class="list-group-item">Link</a>
+          <a href="#" class="list-group-item">Link</a>
+          <a href="#" class="list-group-item">Link</a>
+          <a href="#" class="list-group-item">Link</a>
+          <a href="#" class="list-group-item">Link</a>
         </div>
       </div>
-      <div class="card col-md-2">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="card-link">Card link</a>
+
+      <div class="col-12 col-md-9">
+        <div class="jumbotron">
+          <h1>Title</h1>
+          <p>Description</p>
         </div>
-      </div>
-      <div class="card col-md-2">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="card-link">Card link</a>
+        <div class="row">
+          <div class="col-12">
+            <h2>Tweet One</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          </div>
+          <!--/span-->
+          <div class="col-12">
+            <h2>Tweet Two</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          </div>
+          <!--/span-->
+          <div class="col-12">
+            <h2>All Tweets</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          </div>
+          <!--/span-->
         </div>
+        <!--/row-->
       </div>
+      <!--/span-->
+
+
     </div>
-  </section>
+    <!--/span-->
+  </div>
+  <!--/row-->
 
-  <section id="mycampaigns">
-    <div class="d-flex align-content-around flex-wrap">
-      <span>accounts dashboard</span>
-    </div>
-  </section>
-
-
+  <hr>
   <!-- Footer -->
   <footer class="py-5 bg-black">
     <div class="container">
