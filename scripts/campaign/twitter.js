@@ -37,8 +37,8 @@ function SideBar() {
             btn.innerHTML = `${response.data.data[i].title}`
             btn.setAttribute('data-id', response.data.data[i].id)
             btn.value = response.data.data[i].is_owner
-            if(response.data.data[i].is_owner === true) btn.classList = `btn btn-outline-secondary`
-            else if(response.data.data[i].is_owner === false) btn.classList = `btn btn-outline-danger`
+            if (response.data.data[i].is_owner === true) btn.classList = `btn btn-outline-secondary`
+            else if (response.data.data[i].is_owner === false) btn.classList = `btn btn-outline-danger`
             sideBar.append(btn)
             btn.addEventListener('click', campaignSelection)
           }
@@ -63,66 +63,85 @@ function campaignSelection(event) {
       campaignDescription.innerHTML = response.data.data.campaign.description
       hashtagPlace.innerHTML = ''
       users.innerHTML = ''
-      users.classList = 'card-deck'
-      hashtagPlace.classList = 'card-deck'
-      if(response.data.data.usernames.length === 0) {
+      users.classList = 'card-columns'
+      hashtagPlace.classList = 'card-columns'
+      if (response.data.data.usernames.length === 0) {
         document.querySelector('#usersBlock').style.display = "none"
       }
-      if(response.data.data.hashtags.length === 0) {
+      if (response.data.data.hashtags.length === 0) {
         document.querySelector('#hashtagsBlock').style.display = "none"
       }
-        for (let i = 0; i < response.data.data.usernames.length; i++) {
-          document.querySelector('#usersBlock').style.display = "inline"
-          let card = document.createElement('div')
-          card.classList = `card`
-          // card.style = 'width:20rem'
-          let cardChart = document.createElement('div')
-          let cardBody = document.createElement('div')
-          cardBody.classList = "card-body"
-          let cardText = document.createElement('p')
-          cardText.innerHTML = response.data.data.usernames[i].username
-          card.append(cardChart)
-          cardBody.append(cardText)
-          card.append(cardBody)
-          users.append(card)
-          const chart = new PersonalitySunburstChart({
-            'element': cardChart,
-            'version': 'v3'
-          });
-          chart.show(response.data.data.usernames[i].usernameAnalysis);
-          cardBody.addEventListener('click', modalPopUp(response.data.data.usernames[i].usernameAnalysis, response.data.data.usernames[i].username))
-        }
-        for (let i = 0; i < response.data.data.hashtags.length; i++) {
-          document.querySelector('#hashtagsBlock').style.display = "block"
-          let card = document.createElement('div')
-          card.classList = `card`
-          // card.style = 'width:30px'
-          let cardChart = document.createElement('div')
-          card.append(cardChart)
-          let cardBody = document.createElement('div')
-          cardBody.classList = "card-body"
-          let cardText = document.createElement('p')
-          cardText.innerHTML = response.data.data.hashtags[i].hashtag
-          cardBody.append(cardText)
-          card.append(cardBody)
-          hashtagPlace.append(card)
-          const chart = new PersonalitySunburstChart({
-            'element': cardChart,
-            'version': 'v3'
-          });
-          chart.show(response.data.data.hashtags[i].hashtagAnalysis);
-          cardBody.addEventListener('click', modalPopUp(response.data.data.hashtags[i].hashtagAnalysis, response.data.data.hashtags[i].hashtag))
-        }
+      for (let i = 0; i < response.data.data.usernames.length; i++) {
+        document.querySelector('#usersBlock').style.display = "inline"
+        let card = document.createElement('div')
+        card.classList = `card`
+        // card.style = 'width:20rem'
+        let cardChart = document.createElement('div')
+        let cardBody = document.createElement('div')
+        cardBody.classList = "card-body"
+        let cardText = document.createElement('p')
+        cardText.innerHTML = response.data.data.usernames[i].username
+        card.append(cardChart)
+        cardBody.append(cardText)
+        card.append(cardBody)
+        users.append(card)
+        const chart = new PersonalitySunburstChart({
+          'element': cardChart,
+          'version': 'v3'
+        });
+        chart.show(response.data.data.usernames[i].usernameAnalysis);
+        cardBody.addEventListener('click', modalPopUp(response.data.data.usernames[i].usernameAnalysis, response.data.data.usernames[i].username))
+      }
+      for (let i = 0; i < response.data.data.hashtags.length; i++) {
+        document.querySelector('#hashtagsBlock').style.display = "block"
+        let card = document.createElement('div')
+        card.classList = `card`
+        // card.style = 'width:30px'
+        let cardChart = document.createElement('div')
+        card.append(cardChart)
+        let cardBody = document.createElement('div')
+        cardBody.classList = "card-body"
+        let cardText = document.createElement('p')
+        cardText.innerHTML = response.data.data.hashtags[i].hashtag
+        cardBody.append(cardText)
+        card.append(cardBody)
+        hashtagPlace.append(card)
+        const chart = new PersonalitySunburstChart({
+          'element': cardChart,
+          'version': 'v3'
+        });
+        chart.show(response.data.data.hashtags[i].hashtagAnalysis);
+        cardBody.addEventListener('click', modalPopUp(response.data.data.hashtags[i].hashtagAnalysis, response.data.data.hashtags[i].hashtag, response.data.data.campaign.campaigns_id))
+      }
 
     })
     .catch(err => {
       console.log(err)
     })
 
-    //configures share Button
-share.addEventListener('click', event => {
-  console.log(" I would like to share")
-})
+  //configures share Button
+  share.addEventListener('click', event => {
+    let reqUserid;
+    $('#shareCampaign').modal('show')
+    document.querySelector('#request').addEventListener('click', function(event) {
+      event.preventDefault()
+      reqUsername = document.querySelector('#requestUser').value
+      request(`/users/${userID}/requestUser/${reqUsername}`, `get`)
+        .then(response => {
+          reqUserid = response.data.data.id
+          return request(`/users/${reqUserid}/campaigns/${btnID}`, `post`)
+
+        })
+        .then(response => {
+          $('#shareCampaign').modal('hide')
+          SideBar()
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    })
+  })
+
   //configures remove BTN
   remove.addEventListener('click', event => {
     request(`/users/${userID}/campaigns/${btnID}`, `delete`)
@@ -137,8 +156,8 @@ share.addEventListener('click', event => {
 }
 
 
-function modalPopUp(data, title){
-  return function(event){
+function modalPopUp(data, title) {
+  return function(event) {
     $('#campaignView').modal('show')
     document.querySelector('.campaign-modal-title').innerHTML = title
     const chart = new PersonalitySunburstChart({

@@ -59,7 +59,7 @@
               <label for="inputCampaignDesc">Description</label>
               <input type="text" class="form-control" id="inputCampaignDesc" placeholder="Campaign Description" required>
             </div>
-            <div id="gettingTweetBox"style="display:block" class="form-group">
+            <div id="gettingTweetBox" style="display:block" class="form-group">
               <label for="twitterUser">Twitter Usernames *seperated my commas</label>
               <input type="text" class="form-control" id="twitterUser" placeholder="BillGates, ElonMusk, JeffBezos" required>
               <label for="hashtagSearch">HashTag Searches *seperate by commas</label>
@@ -78,36 +78,60 @@
     </div>
   </div>
 
-<!-- Modal -->
-<div class="modal fade bd-example-modal-lg" id="campaignView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="campaign-modal-title">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="shareCampaign" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Request User to Share With</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
-      <div class="sunburst-modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        <div class="form-group">
+          <label for="requestUser">UserName</label>
+          <input type="text" class="form-control" id="requestUser" placeholder="username">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" id="request" class="btn btn-primary">Save changes</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+  <!-- Modal -->
+  <div class="modal fade bd-example-modal-lg" id="campaignView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="campaign-modal-title">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="sunburst-modal-body">
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
 
-  <div id="entireContainer" class="container">
+  <div id="entireContainer" class="container container-fluid">
     <div class="row">
       <div class="col-6 col-md-3 sidebar-offcanvas">
         <!-- <div id="sidebar" class="list-group"> -->
-          <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block">Create a Campaign</button>
-          <div id="sidebar" class="list-group">
-          </div>
+        <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block">Create a Campaign</button>
+        <div id="sidebar" class="list-group">
+        </div>
       </div>
 
       <div id="contentArea" style="display:none" class="col-12 col-md-9">
@@ -125,18 +149,18 @@
             <h2>Users</h2>
             <p id="users"></p>
           </div>
-        <button id="share" type="button" class="btn btn-primary">Share</button>
-        <button id="remove" type="button" class="btn btn-danger">Remove</button>
+          <button id="share" type="button" class="btn btn-primary">Share</button>
+          <button id="remove" type="button" class="btn btn-danger">Remove</button>
           <!--/span-->
         </div>
         <!--/row-->
       </div>
       <!--/span-->
-<div id="placeholder" style="display:block" class="col-12 col-md-9">
-  <div class="jumbotron jumbotron-fluid">
-    <span>Create Your Own Campaigns!</span>
-  </div>
-    <span style="font-size: 25px;">
+      <div id="placeholder" style="display:block" class="col-12 col-md-9">
+        <div class="jumbotron jumbotron-fluid">
+          <span>Create Your Own Campaigns!</span>
+        </div>
+        <span style="font-size: 25px;">
       1. Determine your Title and Campaign
       <br>
       <br>
@@ -145,7 +169,7 @@
       <br>
       3. Run your Campaign and Share!
     </span>
-</div>
+      </div>
 
     </div>
     <!--/span-->
