@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="styles/accountstyles.css">
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script defer src="scripts/helper.js"></script>
-  <script defer src="scripts/account.js"></script>
+  <script defer src="scripts/updateProfile.js"></script>
 </head>
 
 <body>
@@ -18,7 +18,7 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
     <div class="container">
-      <a class="navbar-brand" href="index.html">EmPath</a>
+      <a class="navbar-brand" style="color:white">EmPath</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -30,7 +30,6 @@
         </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="myDashboard.html">My Dashboard</a>
-              <a class="dropdown-item" href="browseCampaigns.html">Browse Campaigns</a>
               <a class="dropdown-item" href="myAccount.html">My Account</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="index.html">Sign Out</a>
@@ -41,54 +40,49 @@
     </div>
   </nav>
 
-  <div id="wrapper">
+  <div class="container center-block">
+    <div class="card text-center">
 
-          <!-- Sidebar -->
-          <div id="sidebar-wrapper">
-              <ul class="sidebar-nav">
-                  <li class="sidebar-brand">
-                      <a href="#">
-                          Start Bootstrap
-                      </a>
-                  </li>
-                  <li>
-                      <a href="#">Dashboard</a>
-                  </li>
-                  <li>
-                      <a href="#">Shortcuts</a>
-                  </li>
-                  <li>
-                      <a href="#">Overview</a>
-                  </li>
-                  <li>
-                      <a href="#">Events</a>
-                  </li>
-                  <li>
-                      <a href="#">About</a>
-                  </li>
-                  <li>
-                      <a href="#">Services</a>
-                  </li>
-                  <li>
-                      <a href="#">Contact</a>
-                  </li>
-              </ul>
-          </div>
-          <!-- /#sidebar-wrapper -->
+      <div class="card-header">
+        Account Information
+      </div>
 
-          <!-- Page Content -->
-          <div id="page-content-wrapper">
-              <div class="container-fluid">
-                  <h1>Simple Sidebar</h1>
-                  <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                  <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-                  <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
-              </div>
+      <div class="card-body">
+
+        <form class="form-group" id="profileUpdates">
+          <div class="form-group row">
+            <label for="profileFirst">First Name:</label>
+            <input type="text" readonly class="form-control-plaintext" id="profileFirstName" value="First Name">
           </div>
-          <!-- /#page-content-wrapper -->
+          <div class="form-group row">
+            <label for="profileLast">Last Name:</label>
+            <input type="text" readonly class="form-control-plaintext" id="profileLastName" value="Last Name">
+          </div>
+          <div class="form-group row">
+            <label for="profileEmail">Email:</label>
+            <input type="email" readonly class="form-control-plaintext" id="profileEmail" value="email@email.com">
+          </div>
+          <div class="form-group row">
+            <label for="profileUser">Username:</label>
+            <input type="text" readonly class="form-control-plaintext" id="profileUsername" value="Username">
+          </div>
+          <!-- <div class="form-group row">
+            <label for="profilenewPass">Password:</label>
+            <input type="password" readonly class="form-control-plaintext" id="profilenewPass" value="">
+          </div> -->
+          <div class="form-group mx-sm-3 mb-2">
+            <label id="inputPass" for="profilePass">Input Password:</label>
+            <input type="password" class="form-control" id="profilePassword" placeholder="Password">
+          </div>
+          <div id="registerError" style="display:none">Wrong Password</div>
+          <button type="submit" style="display:inline" id="confirmIdentity" class="btn btn-primary mb-2">Confirm identity</button>
+          <button type="submit" style="display:none" id="submitChanges" class="btn btn-primary mb-2">Submit Changes</button>
+          <button type="submit" style="display:none" id="cancelChanges" class="btn btn-primary mb-2">Cancel</button>
+        </form>
 
       </div>
-      <!-- /#wrapper -->
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer class="py-5 bg-black">

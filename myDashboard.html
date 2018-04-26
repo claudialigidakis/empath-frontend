@@ -9,7 +9,9 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
   <link rel="stylesheet" href="styles/accountstyles.css">
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/personality-sunburst-chart@2.2.4/dist/index.js"></script>
   <script defer src="scripts/helper.js"></script>
+  <script defer src="  scripts/campaign/twitter.js"></script>
   <script defer src="scripts/account.js"></script>
 </head>
 
@@ -18,7 +20,7 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
     <div class="container">
-      <a class="navbar-brand" href="index.html">EmPath</a>
+      <a class="navbar-brand" style="color:white">EmPath</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -30,7 +32,6 @@
         </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="myDashboard.html">My Dashboard</a>
-              <a class="dropdown-item" href="browseCampaigns.html">Browse Campaigns</a>
               <a class="dropdown-item" href="myAccount.html">My Account</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="index.html">Sign Out</a>
@@ -49,82 +50,102 @@
           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form id="createCampForm">
             <div class="form-group">
               <label for="inputCampaignTitle">Title</label>
-              <input type="text" class="form-control" id="inputCampaignTitle" placeholder="Campaign Title">
+              <input type="text" class="form-control" id="inputCampaignTitle" placeholder="Campaign Title" required>
             </div>
             <div class="form-group">
               <label for="inputCampaignDesc">Description</label>
-              <input type="text" class="form-control" id="inputCampaignDesc" placeholder="Campaign Description">
+              <input type="text" class="form-control" id="inputCampaignDesc" placeholder="Campaign Description" required>
             </div>
-            <div class="form-group">
-              <label for="exampleFormControlSelect2">Your Recent Tweets</label>
-              <select multiple class="form-control" id="exampleFormControlSelect2">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              </select>
-              <p class="help-block">Select which Tweet(s) you would like included in the campaign.</p>
+            <div id="gettingTweetBox"style="display:block" class="form-group">
+              <label for="twitterUser">Twitter Usernames *seperated my commas</label>
+              <input type="text" class="form-control" id="twitterUser" placeholder="BillGates, ElonMusk, JeffBezos" required>
+              <label for="hashtagSearch">HashTag Searches *seperate by commas</label>
+              <input type="text" class="form-control" id="hashtagSearch" placeholder="#BillGates, #Ocean, #Coca-Cola" required>
+              <button type="submit" id="getTweets" class="btn btn-light">Get Tweets</button>
+              <div style="display:none" id="invalidTwitterParam">Invalid Twitter Input</div>
             </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" checked> Public
-              </label>
+            <div id="twitterProfileBox" style="display:none" class="form-group">
+              <label for="selectedTweet">Your Selected Tweet</label>
+              <div id="selectedTweet">here it is</div>
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+            <button style="display:none" id="createCampaignBut" type="button" class="btn btn-primary">Submit</button>
           </form>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="container">
-    <div class="row row-offcanvas row-offcanvas-right">
-      <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
-        <div class="list-group">
-          <!-- modal -->
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="campaignView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="campaign-modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="sunburst-modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+  <div id="entireContainer" class="container">
+    <div class="row">
+      <div class="col-6 col-md-3 sidebar-offcanvas">
+        <!-- <div id="sidebar" class="list-group"> -->
           <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block">Create a Campaign</button>
-          <a href="#" class="list-group-item">Link</a>
-          <a href="#" class="list-group-item">Link</a>
-          <a href="#" class="list-group-item">Link</a>
-          <a href="#" class="list-group-item">Link</a>
-          <a href="#" class="list-group-item">Link</a>
-          <a href="#" class="list-group-item">Link</a>
-          <a href="#" class="list-group-item">Link</a>
-          <a href="#" class="list-group-item">Link</a>
-          <a href="#" class="list-group-item">Link</a>
-        </div>
+          <div id="sidebar" class="list-group">
+          </div>
       </div>
 
-      <div class="col-12 col-md-9">
+      <div id="contentArea" style="display:none" class="col-12 col-md-9">
         <div class="jumbotron">
-          <h1>Title</h1>
-          <p>Description</p>
+          <h1 id="campaignTitle"></h1>
+          <p id="campaignDescription"></p>
         </div>
         <div class="row">
-          <div class="col-12">
-            <h2>Tweet One</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <div id="hashtagsBlock" class="col-12">
+            <h2>Hashtags</h2>
+            <p id="hashtags"></p>
           </div>
           <!--/span-->
-          <div class="col-12">
-            <h2>Tweet Two</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <div id="usersBlock" class="col-12">
+            <h2>Users</h2>
+            <p id="users"></p>
           </div>
-          <!--/span-->
-          <div class="col-12">
-            <h2>All Tweets</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          </div>
+        <button id="share" type="button" class="btn btn-primary">Share</button>
+        <button id="remove" type="button" class="btn btn-danger">Remove</button>
           <!--/span-->
         </div>
         <!--/row-->
       </div>
       <!--/span-->
-
+<div id="placeholder" style="display:block" class="col-12 col-md-9">
+  <div class="jumbotron jumbotron-fluid">
+    <span>Create Your Own Campaigns!</span>
+  </div>
+    <span style="font-size: 25px;">
+      1. Determine your Title and Campaign
+      <br>
+      <br>
+      2. Gather the hashtags and usernames you would like to evaluate
+      <br>
+      <br>
+      3. Run your Campaign and Share!
+    </span>
+</div>
 
     </div>
     <!--/span-->

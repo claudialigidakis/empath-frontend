@@ -17,14 +17,7 @@
     const email = document.querySelector('#email').value
     const newUser = document.querySelector('#newUsername').value
     const newPass = document.querySelector('#newPassword').value
-    const confirmPass = document.querySelector('#confirmPassword').value
 
-    if(newPass !== confirmPass) {
-      document.querySelector('#signupError').style.display = "block"
-      document.querySelector('#wrongpasswords').style.display = "block"
-      document.querySelector('#wrongpasswords').style.color = "red"
-      return
-    }
 
     if(fname && lname && email && newUser && newPass) {
       request('/users', 'post', { username : newUser, password : newPass, fname , lname, email })
