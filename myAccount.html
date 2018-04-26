@@ -1,46 +1,58 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
   <title>Account Dashboard</title>
+  <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-  <link rel="stylesheet" href="styles/accountstyles.css">
+  <!-- Custom styles for this template -->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/personality-sunburst-chart@2.2.4/dist/index.js"></script>
   <script defer src="scripts/helper.js"></script>
   <script defer src="scripts/updateProfile.js"></script>
+  <link href="styles/dashboard.css" rel="stylesheet">
 </head>
 
 <body>
-  <!--navbar-->
-
-  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-    <div class="container">
-      <a class="navbar-brand" style="color:white">EmPath</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          My Account
-        </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="myDashboard.html">My Dashboard</a>
-              <a class="dropdown-item" href="myAccount.html">My Account</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="index.html">Sign Out</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
+  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Empath</a>
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <a class="nav-link" href="index.html">Sign out</a>
+      </li>
+    </ul>
   </nav>
 
-  <div class="container center-block">
+  <div class="container container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="myMaybeDashboard.html">
+                  <span data-feather="bar-chart-2"></span>
+                  My Campaigns
+                </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="myAccount.html">
+                  <span data-feather="users"></span>
+                  My Account
+                  <span class="sr-only">(current)</span>
+                </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+  <div class="container container-fluid">
     <div class="card text-center">
 
       <div class="card-header">
@@ -66,10 +78,6 @@
             <label for="profileUser">Username:</label>
             <input type="text" readonly class="form-control-plaintext" id="profileUsername" value="Username">
           </div>
-          <!-- <div class="form-group row">
-            <label for="profilenewPass">Password:</label>
-            <input type="password" readonly class="form-control-plaintext" id="profilenewPass" value="">
-          </div> -->
           <div class="form-group mx-sm-3 mb-2">
             <label id="inputPass" for="profilePass">Input Password:</label>
             <input type="password" class="form-control" id="profilePassword" placeholder="Password">
@@ -79,22 +87,25 @@
           <button type="submit" style="display:none" id="submitChanges" class="btn btn-primary mb-2">Submit Changes</button>
           <button type="submit" style="display:none" id="cancelChanges" class="btn btn-primary mb-2">Cancel</button>
         </form>
-
+        </main>
       </div>
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="py-5 bg-black">
-    <div class="container">
-      <p class="m-0 text-center text-white small">Copyright &copy; Your Website 2018</p>
-    </div>
-    <!-- /.container -->
-  </footer>
-  <!--scripts -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+      feather.replace()
+    </script>
 </body>
 
 </html>

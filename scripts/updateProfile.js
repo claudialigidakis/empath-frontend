@@ -5,7 +5,6 @@
   // authe gate
   request('/auth/token')
   .then(function(response){
-    document.querySelector('#navbarDropdown').innerHTML = response.data.name
     document.querySelector('#profileFirstName').value = response.data.name
     document.querySelector('#profileLastName').value = response.data.lname
     document.querySelector('#profileUsername').value = response.data.user
@@ -34,7 +33,7 @@ confirmIdentity.addEventListener('click', function(event){
           let lastName = document.querySelector('#profileLastName')
           let formUsername = document.querySelector('#profileUsername')
           let email = document.querySelector('#profileEmail')
-        
+
 
           firstName.classList = "form"
           lastName.classList = "form"
