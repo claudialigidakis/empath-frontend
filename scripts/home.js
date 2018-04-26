@@ -28,7 +28,7 @@
         console.log("response")
         document.querySelector('#registerError').classList.add('hide-auth-error')
         localStorage.setItem('token', response.data.token)
-        window.location = '/myDashboard.html'
+        window.location = '/myMaybeDashboard.html'
       })
       .catch(function(error){
         document.querySelector('#registerError').classList.remove('hide-auth-error')
@@ -50,7 +50,7 @@
           .then(function(response){
             document.querySelector('#error').classList.add('hide-auth-error')
             localStorage.setItem('token', response.data.token)
-            window.location = '/myDashboard.html'
+            window.location = '/myMaybeDashboard.html'
           })
           .catch(function(error){
             document.querySelector('#error').classList.remove('hide-auth-error')

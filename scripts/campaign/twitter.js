@@ -33,15 +33,15 @@ function SideBar() {
         .then(response => {
           sideBar.innerHTML = ''
           for (let i = 0; i < response.data.data.length; i++) {
-            let btn = document.createElement("Button")
-            btn.classList = 'list-group-item'
-            btn.innerHTML = `${response.data.data[i].title}`
-            btn.setAttribute('data-id', response.data.data[i].id)
-            btn.value = response.data.data[i].is_owner
-            if (response.data.data[i].is_owner === true) btn.classList = `btn btn-outline-secondary`
-            else if (response.data.data[i].is_owner === false) btn.classList = `btn btn-outline-danger`
-            sideBar.append(btn)
-            btn.addEventListener('click', campaignSelection)
+            let li = document.createElement("button")
+            li.classList = 'list-group-item list-group-item-action'
+            li.innerHTML = `${response.data.data[i].title}`
+            li.setAttribute('data-id', response.data.data[i].id)
+            li.value = response.data.data[i].is_owner
+            if (response.data.data[i].is_owner === true) li.classList = `list-group-item list-group-item-action list-group-item-primary`
+            else if (response.data.data[i].is_owner === false) li.classList = `list-group-item list-group-item-action list-group-item-warning`
+            sideBar.append(li)
+            li.addEventListener('click', campaignSelection)
           }
         })
         .catch(err => {
@@ -56,12 +56,11 @@ SideBar()
 
 function campaignSelection(event) {
   var btnID = parseInt(event.srcElement.getAttribute('data-id'))
+  document.querySelector('#myChart').style.display = "none"
   request(`/users/${userID}/campaigns/${btnID}`, `get`)
     .then(response => {
-      placeholder.style.display = "none"
       contentArea.style.display = "block"
       campaignTitle.innerHTML = response.data.data.campaign.title
-      campaignDescription.innerHTML = response.data.data.campaign.description
       hashtagPlace.innerHTML = ''
       users.innerHTML = ''
       users.classList = 'card-columns'
@@ -159,7 +158,8 @@ function campaignSelection(event) {
 
 function modalPopUp(data, title) {
   return function(event) {
-    $('#campaignView').modal('show')
+    console.log("no")
+    document.querySelector('#myChart').style.display = "inline"
     document.querySelector('.campaign-modal-title').innerHTML = title
     const chart = new PersonalitySunburstChart({
       'element': document.querySelector('.sunburst-modal-body'),

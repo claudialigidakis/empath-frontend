@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Dashboard Template for Bootstrap</title>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <!-- Custom styles for this template -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/personality-sunburst-chart@2.2.4/dist/index.js"></script>
+  <script defer src="scripts/helper.js"></script>
+  <script defer src="  scripts/campaign/twitter.js"></script>
+  <link href="styles/dashboard.css" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Empath</a>
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <a class="nav-link" href="index.html">Sign out</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">
+                  <span data-feather="bar-chart-2"></span>
+                  My Campaigns <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="myAccount.html">
+                  <span data-feather="users"></span>
+                  My Account
+                </a>
+            </li>
+          </ul>
+
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>Saved Campaigns</span>
+              <a data-toggle="modal" data-target="#squarespaceModal" class="d-flex align-items-center text-muted" href="#">
+                <span data-feather="plus-circle"></span>
+              </a>
+            </h6>
+          <ul id="sidebar" class="nav flex-column mb-2">
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <div class="my-4" id="myChart" style="width:900; height:380; display:none">
+    <h5 class="campaign-modal-title"></h5>
+    <div style="width:450; height:380">
+    <div class="sunburst-modal-body">
+    </div>
+  </div>
+  </div>
+
+
+  <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+      <h1 id="campaignTitle" class="h2">Campaigns</h1>
+      <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group mr-2">
+          <button id="share" class="btn btn-sm btn-outline-secondary">Share</button>
+          <button id="remove" class="btn btn-sm btn-outline-secondary">Remove</button>
+        </div>
+      </div>
+    </div>
+    <div id="contentArea" style="display:none" class="container container-fluid">
+      <div class="row">
+        <div id="hashtagsBlock" class="col-12">
+          <h2>Hashtags</h2>
+          <p id="hashtags"></p>
+        </div>
+        <!--/span-->
+        <div id="usersBlock" class="col-12">
+          <h2>Users</h2>
+          <p id="users"></p>
+        </div>
+        <!--/span-->
+      </div>
+    </div>
+
+
+
+    <!-- line modal -->
+    <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="lineModalLabel">Create A Campaign</h3>
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+          </div>
+          <div class="modal-body">
+            <form id="createCampForm">
+              <div class="form-group">
+                <label for="inputCampaignTitle">Title</label>
+                <input type="text" class="form-control" id="inputCampaignTitle" placeholder="Campaign Title" required>
+              </div>
+              <div class="form-group">
+                <label for="inputCampaignDesc">Description</label>
+                <input type="text" class="form-control" id="inputCampaignDesc" placeholder="Campaign Description" required>
+              </div>
+              <div id="gettingTweetBox" style="display:block" class="form-group">
+                <label for="twitterUser">Twitter Usernames *seperated my commas</label>
+                <input type="text" class="form-control" id="twitterUser" placeholder="BillGates, ElonMusk, JeffBezos" required>
+                <label for="hashtagSearch">HashTag Searches *seperate by commas</label>
+                <input type="text" class="form-control" id="hashtagSearch" placeholder="#BillGates, #Ocean, #Coca-Cola" required>
+                <button type="submit" id="getTweets" class="btn btn-light">Get Tweets</button>
+                <div style="display:none" id="invalidTwitterParam">Invalid Twitter Input</div>
+              </div>
+              <div id="twitterProfileBox" style="display:none" class="form-group">
+                <label for="selectedTweet">Your Selected Tweet</label>
+                <div id="selectedTweet">here it is</div>
+              </div>
+              <button style="display:none" id="createCampaignBut" type="button" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="shareCampaign" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Share with Another User</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          </div>
+          <div class="form-group">
+            <label for="requestUser">UserName</label>
+            <input type="text" class="form-control" id="requestUser" placeholder="username">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" id="request" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+      feather.replace()
+    </script>
+</body>
+
+</html>
