@@ -60,6 +60,8 @@ function campaignSelection(event) {
   request(`/users/${userID}/campaigns/${btnID}`, `get`)
     .then(response => {
       contentArea.style.display = "block"
+      document.querySelector('#homeDashboard').style.display = "none"
+      document.querySelector('#buttons').style.display = "block"
       campaignTitle.innerHTML = response.data.data.campaign.title
       hashtagPlace.innerHTML = ''
       users.innerHTML = ''
