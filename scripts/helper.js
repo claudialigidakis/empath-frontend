@@ -6,7 +6,8 @@ function request(path, method = 'get', body = null) {
     bearerToken = `Bearer ${token}`
   }
 
-  return axios(`http://localhost:3000${path}`, {
+  // return axios(`http://localhost:3000${path}`, {
+  return axios(`https://tranquil-beyond-12949.herokuapp.com${path}`, {
     method: method,
     headers: {
       'Content-Type': 'application/json',

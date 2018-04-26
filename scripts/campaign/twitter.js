@@ -17,6 +17,7 @@ const contentArea = document.querySelector('#contentArea')
 const placeholder = document.querySelector('#placeholder')
 const share = document.querySelector('#share')
 const campaignView = document.querySelector('#campaignView')
+const sharedBy = document.querySelector('#sharedBy')
 var userID;
 
 

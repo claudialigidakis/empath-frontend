@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>Home Page</title>
+
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
   <link rel="stylesheet" href="styles/main.css">
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -32,11 +33,11 @@
     </div>
   </nav>
 
-  <header class="masthead text-center text-white">
+  <header id="homeContainer" class="masthead text-center text-white">
     <div class="masthead-content">
       <div class="container">
         <h1 class="masthead-heading mb-0">EmPath</h1>
-        <h2 class="masthead-subheading mb-0">The most efficient way to analyze how your tweets are making your followers feel.</h2>
+        <h2 class="masthead-subheading mb-0">The most efficient way to analyze how your brand or potential ambassadors come off to your customers.</h2>
         <a id="signUpButton" data-toggle="modal" data-target="#signupModal" class="btn btn-primary btn-xl rounded-pill mt-5">Sign Up</a>
       </div>
     </div>
@@ -47,13 +48,13 @@
       <div class="row align-items-center">
         <div class="col-lg-6 order-lg-2">
           <div class="p-5">
-            <img class="img-fluid rounded-circle" src="http://cdn3-www.dogtime.com/assets/uploads/2011/03/puppy-development.jpg" alt="">
+            <img class="img-fluid rounded-circle" src="images/create.png" alt="">
           </div>
         </div>
         <div class="col-lg-6 order-lg-1">
           <div class="p-5">
-            <h2 class="display-4">Select...</h2>
-            <p>Chose which tweets to analyze.</p>
+            <h2 class="display-3">Select...</h2>
+            <p>Chose which hashtags or users you wish to analyze.</p>
           </div>
         </div>
       </div>
@@ -65,13 +66,13 @@
       <div class="row align-items-center">
         <div class="col-lg-6">
           <div class="p-5">
-            <img class="img-fluid rounded-circle" src="http://cdn3-www.dogtime.com/assets/uploads/2011/03/puppy-development.jpg" alt="">
+            <img class="img-fluid rounded-circle" src="images/displayPage.png" alt="">
           </div>
         </div>
         <div class="col-lg-6">
           <div class="p-5">
-            <h2 class="display-4">Visualize</h2>
-            <p>View the reactions in easy to read graphs and select the data you wish to render.</p>
+            <h2 class="display-3">Visualize</h2>
+            <p>Qucikly assess the personality each hashtag and/or user emit.</p>
           </div>
         </div>
       </div>
@@ -80,17 +81,17 @@
 
   <section>
     <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6 order-lg-2">
+      <div class="align-items-center">
+        <!-- <div class="col-lg-6 order-lg-2">
           <div class="p-5">
             <img class="img-fluid rounded-circle" src="http://cdn3-www.dogtime.com/assets/uploads/2011/03/puppy-development.jpg" alt="">
           </div>
-        </div>
-        <div class="col-lg-6 order-lg-1">
-          <div class="p-5">
-            <h2 class="display-4">Follow!</h2>
-            <p>Follow other public campaings to see how the public reaction changes over time.</p>
-          </div>
+        </div> -->
+        <div class="text-center">
+            <h2 class="display-2">Share!</h2>
+            <p>Share your campaigns with your peers so you all can make informed decisions</p>
+            <br>
+            <br>
         </div>
       </div>
     </div>
@@ -173,12 +174,10 @@
   <!-- Footer -->
   <footer class="py-5 bg-black">
     <div class="container">
-      <p class="m-0 text-center text-white small">Copyright &copy; Your Website 2018</p>
+      <p class="m-0 text-center text-white small">Copyright &copy; Claudia 2018</p>
     </div>
     <!-- /.container -->
   </footer>
-
-
 
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

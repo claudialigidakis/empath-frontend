@@ -1,8 +1,12 @@
-
 h1, h2, h3, h4, h5, h6 {
   font-family: Catamaran;
   font-weight: 800 !important
 }
+
+#homeContainer{
+  min-height: 95vh;
+}
+
 
 #loginButton {
   color: white;
