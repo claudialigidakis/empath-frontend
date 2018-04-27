@@ -31,6 +31,7 @@ function SideBar() {
     .then(data => {
       request(`/users/${userID}/campaigns`, `get`)
         .then(response => {
+          console.log(response)
           sideBar.innerHTML = ''
           for (let i = 0; i < response.data.data.length; i++) {
             let li = document.createElement("button")
